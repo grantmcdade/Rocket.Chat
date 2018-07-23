@@ -1,0 +1,34 @@
+image: registry.gitlab.com/app4business/docker-images/meteor
+
+stages:
+  - build
+
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+  - "$HOME/node_modules"
+  - "$HOME/.meteor"
+  - "$HOME/.npm"
+  - "$HOME/.node-gyp"
+  - "$HOME/build/RocketChat/Rocket.Chat/node_modules"
+  - "$HOME/build/RocketChat/Rocket.Chat/.meteor/local"
+  - "$HOME/build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.npm"
+  - "$HOME/build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.app/node_modules"
+  - "$HOME/build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.app/.meteor/local"
+
+build:
+  stage: build
+  artifacts:
+    name: build
+    paths:
+    - /tmp/build
+  script:
+    - echo "Running build"
+    - if [ ! -e "$HOME/.meteor/meteor" ]; then curl https://install.meteor.com | sed s/--progress-bar/-sL/g | /bin/sh; fi
+    - export PATH="$HOME/.meteor:$PATH"
+    - meteor npm install
+    - meteor build --headless /tmp/build
+    - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/log
+    - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/run
+    - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/db
