@@ -32,3 +32,4 @@ build:
     - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/log
     - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/run
     - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/db
+
