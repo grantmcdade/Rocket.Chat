@@ -104,3 +104,4 @@ env:
   - MONGO_OPLOG_URL: "mongodb://localhost:27017/local"
   - MONGO_URL: "mongodb://localhost:27017/meteor"
   - TEST_MODE: "true"
+  - TOOL_NODE_FLAGS: "--max_old_space_size=4096"
