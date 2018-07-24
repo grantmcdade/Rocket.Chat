@@ -17,6 +17,9 @@ cache:
   - "$HOME/build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.app/node_modules"
   - "$HOME/build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.app/.meteor/local"
 
+variables:
+  TOOL_NODE_FLAGS: --max-old-space-size=4096
+
 build:
   stage: build
   artifacts:
