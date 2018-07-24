@@ -28,6 +28,7 @@ build:
     - "$HOME/build"
   script:
     - &install if [ ! -e "$HOME/.meteor/meteor" ]; then curl https://install.meteor.com | sed s/--progress-bar/-sL/g | /bin/sh; fi
+    - export PATH="$HOME/.meteor:$PATH"
     - meteor npm install
     - meteor build --production $HOME/build
     - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/log
