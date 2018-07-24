@@ -25,11 +25,11 @@ build:
   artifacts:
     name: build
     paths:
-    - /tmp/build
+    - "$HOME/build"
   script:
     - &install if [ ! -e "$HOME/.meteor/meteor" ]; then curl https://install.meteor.com | sed s/--progress-bar/-sL/g | /bin/sh; fi
     - meteor npm install
-    - meteor build --headless /tmp/build
+    - meteor build --headless $HOME/build
     - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/log
     - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/run
     - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/db
