@@ -3,8 +3,10 @@ image: registry.gitlab.com/app4business/docker-images/meteor
 stages:
   - build
 
-# This folder is cached between builds
-# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+variables:
+  TOOL_NODE_FLAGS: --max-old-space-size=4096
+  HOME: ./
+
 cache:
   paths:
   - "$HOME/node_modules"
@@ -17,8 +19,6 @@ cache:
   - "$HOME/build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.app/node_modules"
   - "$HOME/build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.app/.meteor/local"
 
-variables:
-  TOOL_NODE_FLAGS: --max-old-space-size=4096
 
 build:
   stage: build
@@ -29,7 +29,7 @@ build:
   script:
     - &install if [ ! -e "$HOME/.meteor/meteor" ]; then curl https://install.meteor.com | sed s/--progress-bar/-sL/g | /bin/sh; fi
     - meteor npm install
-    - meteor build --headless $HOME/build
+    - meteor build --production $HOME/build
     - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/log
     - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/run
     - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/db
