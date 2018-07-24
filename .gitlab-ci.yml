@@ -5,19 +5,18 @@ stages:
 
 variables:
   TOOL_NODE_FLAGS: --max-old-space-size=4096
-  HOME: $PWD/../
 
 cache:
   paths:
-  - "$HOME/node_modules"
-  - "$HOME/.meteor"
-  - "$HOME/.npm"
-  - "$HOME/.node-gyp"
-  - "$HOME/build/RocketChat/Rocket.Chat/node_modules"
-  - "$HOME/build/RocketChat/Rocket.Chat/.meteor/local"
-  - "$HOME/build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.npm"
-  - "$HOME/build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.app/node_modules"
-  - "$HOME/build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.app/.meteor/local"
+  - "node_modules"
+  - ".meteor"
+  - ".npm"
+  - ".node-gyp"
+  - "build/RocketChat/Rocket.Chat/node_modules"
+  - "build/RocketChat/Rocket.Chat/.meteor/local"
+  - "build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.npm"
+  - "build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.app/node_modules"
+  - "build/RocketChat/Rocket.Chat/packages/rocketchat-livechat/.app/.meteor/local"
 
 
 build:
@@ -32,7 +31,7 @@ build:
     - export PATH="$HOME/.meteor:$PATH"
     - meteor npm install
     - meteor build --server-only $HOME/build
-    - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/log
-    - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/run
-    - rm -rf $HOME/build/RocketChat/Rocket.Chat/.meteor/local/db
+    - rm -rf build/RocketChat/Rocket.Chat/.meteor/local/log
+    - rm -rf build/RocketChat/Rocket.Chat/.meteor/local/run
+    - rm -rf build/RocketChat/Rocket.Chat/.meteor/local/db
 
