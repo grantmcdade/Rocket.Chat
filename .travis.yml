@@ -75,9 +75,9 @@ before_deploy:
 - echo ".travis/sandstorm.sh"
 deploy:
   - provider: s3
-    access_key_id: AKIAIKIA7H7D47KUHYCA
+    access_key_id: AKIAJWOBR7IB44CMV4MQ
     secret_access_key: "$ACCESSKEY"
-    bucket: download.rocket.chat
+    bucket: a4b.rocket.chat
     skip_cleanup: true
     upload_dir: build
     local_dir: "$ROCKET_DEPLOY_DIR"
