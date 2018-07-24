@@ -5,7 +5,7 @@ stages:
 
 variables:
   TOOL_NODE_FLAGS: --max-old-space-size=4096
-  HOME: ./
+  HOME: $PWD/../
 
 cache:
   paths:
