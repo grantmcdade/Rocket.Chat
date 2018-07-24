@@ -1,4 +1,4 @@
-image: registry.gitlab.com/app4business/docker-images/meteor
+image: registry.gitlab.com/app4business/docker-images/meteor:6078dd1204091ec11611661f9311a8c3b64a435e
 
 stages:
   - build
